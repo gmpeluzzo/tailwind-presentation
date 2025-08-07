@@ -1,3 +1,10 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant reggae (&:where(.reggae, .reggae *));
+
+@theme {
+  --color-primary: #1E40AF;
+  --color-secondary: #6B8E23; 
+  --color-gelo: #E0F7FA;
+}
