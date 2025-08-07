@@ -231,6 +231,24 @@ const config: Config = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   // ... outras configurações
 };
+```
+
+## 5 JIT vs Purge no Tailwind CSS
+
+### Antes: Purge CSS
+Até a versão 2.x, o Tailwind CSS utilizava o PurgeCSS para remover classes não utilizadas durante o processo de build. Como o Tailwind gera milhares de classes utilitárias por padrão, era necessário eliminar as que não estavam em uso para reduzir o tamanho final do CSS.
+
+- Escaneava os arquivos do projeto em busca de classes utilizadas.
+- O processo de build era mais lento, especialmente em projetos grandes.
+- Exigia configuração manual, e era comum acidentalmente remover classes usadas dinamicamente (ex: `className={`bg-${color}`}`).
+
+### Agora: JIT (Just-In-Time)
+A partir da versão 3, o Tailwind adotou o compilador JIT como padrão, trazendo melhorias significativas em performance e flexibilidade.
+
+- Gera as classes CSS sob demanda, conforme aparecem no seu código.
+- Builds mais rápidas e arquivos finais menores.
+- Suporte completo a classes dinâmicas e sintaxe arbitrária (ex: `hover:bg-[color]`, `grid-cols-[auto,1fr]`).
+
 
 
 ---
