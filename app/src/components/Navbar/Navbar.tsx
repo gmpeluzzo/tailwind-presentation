@@ -1,7 +1,13 @@
 import { useLocalStorage } from '@mantine/hooks';
 import { useEffect } from 'react';
 
-type Theme = 'light' | 'dark';
+type Theme = 'light' | 'dark' | 'reggae';
+
+const themeMapping: Record<string, Theme> = {
+  'dark': 'light',
+  'light': 'reggae',
+  'reggae': 'dark',
+}
 
 export const Navbar = () => {
   const [theme, setTheme] = useLocalStorage<Theme>({
@@ -9,8 +15,8 @@ export const Navbar = () => {
     defaultValue: 'dark',
   })
 
-  const onToggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
+  const handleChangeTheme = () => {
+    const newTheme = themeMapping[theme];
     setTheme(newTheme);
     document.documentElement.className = newTheme;
   };
@@ -20,12 +26,12 @@ export const Navbar = () => {
   }, [theme])
 
   return (
-    <header className="bg-gray-100 dark:bg-gray-800 p-4 shadow-md">
+    <header className="bg-white dark:bg-gray-800 reggae:bg-red-600 p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="lg:text-4xl sm:text-2xl md:text-3xl font-bold">Meu App</h1>
+        <h1 className="lg:text-4xl sm:text-2xl md:text-3xl reggae:text-amber-600 font-bold">Meu App</h1>
         <button
-          onClick={onToggleTheme}
-          className="px-3 py-1 rounded bg-gray-300 dark:bg-gray-700"
+          onClick={handleChangeTheme}
+          className="px-3 py-1 rounded bg-gray-300 dark:bg-gray-700 reggae:text-amber-200 reggae:bg-blue-800"
         >
           Alternar Tema ({theme})
         </button>
